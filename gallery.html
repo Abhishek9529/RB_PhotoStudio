@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery | RB Photo Studio</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/images/logo.png" alt="RB Photo Studio logo" />
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="wedding.html">Wedding</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html" class="nav-cta">Book a Session</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero gallery-hero">
+      <div class="container reveal">
+        <p class="eyebrow">Portfolio</p>
+        <h1>A curated gallery of moments, portraits and brand stories.</h1>
+        <p>Filter by category and click any image for a larger preview.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="filter-bar reveal">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="wedding">Wedding</button>
+          <button class="filter-btn" data-filter="portrait">Portrait</button>
+          <button class="filter-btn" data-filter="product">Product</button>
+          <button class="filter-btn" data-filter="event">Event</button>
+          <button class="filter-btn" data-filter="baby">Baby Shoot</button>
+          <button class="filter-btn" data-filter="fashion">Fashion</button>
+        </div>
+
+        <div class="gallery-grid reveal">
+          <img class="gallery-item" data-category="wedding" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=900&q=80" alt="Wedding ceremony photography" />
+          <img class="gallery-item" data-category="portrait" src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=900&q=80" alt="Elegant portrait photography" />
+          <img class="gallery-item" data-category="product" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80" alt="Product photography watch" />
+          <img class="gallery-item" data-category="event" src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=900&q=80" alt="Event stage photography" />
+          <img class="gallery-item" data-category="baby" src="https://images.unsplash.com/photo-1546015720-b8b30df5aa27?auto=format&fit=crop&w=900&q=80" alt="Baby photoshoot" />
+          <img class="gallery-item" data-category="fashion" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=900&q=80" alt="Fashion portfolio photography" />
+          <img class="gallery-item" data-category="wedding" src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=900&q=80" alt="Wedding details photography" />
+          <img class="gallery-item" data-category="portrait" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80" alt="Studio portrait" />
+          <img class="gallery-item" data-category="product" src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=900&q=80" alt="Headphone product photography" />
+          <img class="gallery-item" data-category="event" src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=900&q=80" alt="Celebration event photography" />
+          <img class="gallery-item" data-category="baby" src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?auto=format&fit=crop&w=900&q=80" alt="Newborn baby shoot" />
+          <img class="gallery-item" data-category="fashion" src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=900&q=80" alt="Fashion model photography" />
+        </div>
+      </div>
+    </section>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" aria-label="Close preview">×</button>
+      <img src="" alt="Expanded gallery preview" id="lightboxImage" />
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>RB Photo Studio</h3>
+        <p>Premium photography studio in Mudana, Maharashtra.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Mudana, Mahagoan, Maharashtra</p>
+        <p>+91 7709373065</p>
+        <p>rushibhutekar@gmail.com</p>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <p>Instagram · Facebook · YouTube</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 RB Photo Studio. All rights reserved.</div>
+  </footer>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+</html>

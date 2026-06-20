@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | RB Photo Studio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+    .about-hero {
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.55) 45%, rgba(0, 0, 0, 0.15) 100%),
+        url('assets/images/owner/PhothographerRB.png') center/cover no-repeat;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 90px;
+      padding-bottom: 40px;
+    }
+
+    .about-hero .container {
+      width: min(620px, 90%);
+      margin-left: 5%;
+      margin-right: auto;
+    }
+
+    .about-hero .hero-label {
+      color: var(--gold-2);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      font-weight: 800;
+      font-size: 0.78rem;
+      margin-bottom: 18px;
+    }
+
+    .about-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 400;
+      line-height: 1.08;
+      color: #fff;
+      max-width: 16ch;
+      margin-bottom: 22px;
+    }
+
+    .about-hero h1 span {
+      color: var(--gold-2);
+      font-style: italic;
+    }
+
+    .about-hero .hero-desc {
+      color: #d0c9bc;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+
+    .about-hero .hero-line {
+      width: 50px;
+      height: 2px;
+      background: var(--gold-2);
+      margin-bottom: 18px;
+    }
+
+    .about-hero .hero-name {
+      color: var(--gold-2);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: 0.04em;
+    }
+
+    .about-hero .hero-role {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-top: 4px;
+    }
+
+    @media (max-width: 760px) {
+      .about-hero {
+        background:
+          linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.85) 60%, rgba(0, 0, 0, 0.95) 100%),
+          url('assets/images/owner/PhothographerRB.png') center top/cover no-repeat;
+        align-items: flex-end;
+        padding-bottom: 60px;
+        padding-top: 40px;
+      }
+
+      .about-hero .container {
+        width: 92%;
+        margin-left: auto;
+      }
+
+      .about-hero h1 {
+        font-size: clamp(2rem, 7vw, 2.8rem);
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/images/logo.png" alt="RB Photo Studio logo" />
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="wedding.html">Wedding</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html" class="nav-cta">Book a Session</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="page-hero about-hero">
+      <div class="container reveal">
+        <p class="hero-label">About the Photographer</p>
+        <h1>The <span>Vision</span> Behind Every Frame</h1>
+        <p class="hero-desc">Meet Rushi Bhutekar — the creative eye behind RB Photo Studio. With years of experience
+          capturing weddings, baby shoots and family milestones, every frame is crafted with patience, emotion and a
+          premium touch.</p>
+        <div class="hero-line"></div>
+        <p class="hero-name">Rushi Bhutekar</p>
+        <p class="hero-role">Founder & Lead Photographer, RB Photo Studio</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split-grid">
+        <div class="reveal">
+          <p class="eyebrow">Studio story</p>
+          <h2>From small portrait sessions to complete visual experiences.</h2>
+        </div>
+        <div class="intro-copy reveal">
+          <p>Founded in Mudana by Rushi Bhutekar, RB Photo Studio began as a boutique portrait space and grew into a
+            full-service photography brand for weddings, families, brands and events. Our process is calm, organized and
+            detail focused, so clients enjoy the shoot as much as the final gallery.</p>
+          <p>Every project starts with a creative brief and ends with a refined set of images prepared for albums,
+            prints, websites and social platforms.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Meet the team</p>
+          <h2>Creative people behind the camera</h2>
+        </div>
+        <div class="team-grid">
+          <article class="team-card reveal">
+            <img src="assets/images/owner/RB.jpeg" alt="Rushi Bhutekar" />
+            <h3>Rushi Bhutekar</h3>
+            <p>Founder &amp; Lead Photographer</p>
+            <span>Weddings · Portraits · Creative Direction</span>
+          </article>
+          <article class="team-card reveal">
+            <img src="assets/images/team/suraj.jpg" alt="Suraj" />
+            <h3>Suraj</h3>
+            <p>Portrait Specialist</p>
+            <span>Baby Shoots · Fashion · Styling</span>
+          </article>
+          <article class="team-card reveal">
+            <img src="assets/images/team/rahul.jpg" alt="rahul" />
+            <h3>rahul</h3>
+            <p>Event Cinematographer</p>
+            <span>Events · Films · Editing</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container mission-grid">
+        <div class="mission-card reveal">
+          <p class="eyebrow">Mission</p>
+          <h2>Make every client feel guided, confident and beautifully represented.</h2>
+          <p>We create imagery that balances real emotion with a polished premium finish.</p>
+        </div>
+        <div class="mission-card reveal">
+          <p class="eyebrow">Vision</p>
+          <h2>To become Maharashtra's most trusted studio for timeless visual memories.</h2>
+          <p>We aim to bring thoughtful design, reliable delivery and artistic consistency to every shoot.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section stats-section section-alt">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card reveal"><strong>8+</strong><span>Years Experience</span></div>
+          <div class="stat-card reveal"><strong>500+</strong><span>Shoots Completed</span></div>
+          <div class="stat-card reveal"><strong>120+</strong><span>Weddings Covered</span></div>
+          <div class="stat-card reveal"><strong>50+</strong><span>Corporate Clients</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container reveal">
+        <h2>Visit the studio or plan your shoot online.</h2>
+        <p>Our team will help you choose the right package and creative direction.</p>
+        <a class="btn btn-primary" href="contact.html">Book Consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>RB Photo Studio</h3>
+        <p>Premium photography studio in Mudana, Maharashtra.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Mudana, Mahagoan, Maharashtra</p>
+        <p>+91 7709373065</p>
+        <p>rushibhutekar@gmail.com</p>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <p>Instagram · Facebook · YouTube</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 RB Photo Studio. All rights reserved.</div>
+  </footer>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+
+</html>

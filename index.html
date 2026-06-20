@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RB Photo Studio | Premium Photography in Mudana, Mahagoan</title>
+  <meta name="description"
+    content="RB Photo Studio is a premium photography studio in Mudana, Maharashtra for weddings, portraits, baby shoots, products and events." />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+    .home-hero {
+      position: relative;
+      min-height: 100vh;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(1.04);
+      transition: opacity 800ms ease, transform 1800ms ease;
+    }
+
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.14), rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.2) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 460px;
+      margin-left: 2.2vw;
+      padding-top: 110px;
+    }
+
+    .home-hero h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2rem, 3.2vw, 3.5rem);
+      max-width: 360px;
+      line-height: 0.95;
+      text-wrap: balance;
+    }
+
+    .home-hero h1 span {
+      color: var(--gold-2);
+    }
+
+    .hero-kicker {
+      color: #fff;
+      font-size: 0.82rem;
+      letter-spacing: 0.16em;
+      opacity: 0.9;
+    }
+
+    .hero-note {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 34px;
+      max-width: 430px;
+    }
+
+    .hero-line {
+      width: 32px;
+      height: 2px;
+      background: #fff;
+      opacity: 0.8;
+      flex: 0 0 auto;
+    }
+
+    .hero-note p {
+      margin: 0;
+      color: #fff;
+      font-size: 1rem;
+      line-height: 1.45;
+      max-width: none;
+    }
+
+    .hero-controls {
+      position: absolute;
+      left: 50%;
+      bottom: 28px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: min(92%, 380px);
+      transform: translateX(-50%);
+    }
+
+    .hero-control {
+      min-width: 84px;
+      padding: 11px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font: inherit;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      transition: transform 200ms ease, background 200ms ease, border-color 200ms ease, color 200ms ease;
+    }
+
+    .hero-control:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .hero-control.is-primary {
+      min-width: 46px;
+      width: 46px;
+      height: 46px;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.88);
+      color: #1c1812;
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-control.is-primary:hover {
+      background: #fff;
+      color: #111;
+      border-color: #fff;
+    }
+
+    .hero-control-icon {
+      width: 18px;
+      height: 18px;
+      display: none;
+    }
+
+    .hero-control-icon svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      fill: currentColor;
+    }
+
+    .hero-control[data-state="play"] .hero-control-icon--play,
+    .hero-control[data-state="pause"] .hero-control-icon--pause {
+      display: block;
+    }
+
+    .site-header {
+      padding-left: 3.5%;
+      padding-right: 3.5%;
+    }
+
+    .site-header.scrolled {
+      padding-left: 3.5%;
+      padding-right: 3.5%;
+    }
+
+    .brand-logo {
+      width: 66px;
+      height: 66px;
+      filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.38)) drop-shadow(0 0 3px rgba(0, 0, 0, 0.12));
+    }
+
+    .nav-cta {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    @media (max-width: 1000px) {
+      .hero-content {
+        margin-left: auto;
+        max-width: 620px;
+      }
+
+      .home-hero h1 {
+        font-size: clamp(2.1rem, 4vw, 4rem);
+        max-width: 420px;
+        line-height: 1;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero-content {
+        max-width: 92%;
+        margin-left: 0;
+        padding-top: 96px;
+      }
+
+      .hero-note {
+        max-width: 100%;
+        margin-top: 24px;
+      }
+
+      .hero-note p {
+        font-size: 0.98rem;
+      }
+
+      .hero-controls {
+        bottom: 20px;
+        width: min(92%, 340px);
+        gap: 10px;
+      }
+
+      .hero-control {
+        min-width: 76px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+      }
+
+      .hero-control.is-primary {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+      }
+
+      .site-header,
+      .site-header.scrolled {
+        padding-left: 4%;
+        padding-right: 4%;
+      }
+
+      .brand-logo {
+        width: 60px;
+        height: 60px;
+      }
+
+      .nav-cta {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+    }
+
+    /* Home Our Gallery Section */
+    .home-our-gallery {
+      background: #0b0c0a;
+      padding: 100px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .home-our-gallery .section-heading {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .home-our-gallery .gallery-title {
+      font-family: "Cormorant Garamond", serif;
+      font-size: clamp(2.5rem, 4.5vw, 4.8rem);
+      font-weight: 300;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: 0.02em;
+    }
+
+    .home-our-gallery .gallery-title span {
+      color: var(--gold-2);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .home-our-gallery .gallery-subtitle {
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    Designed .home-our-gallery .gallery-subtitle span {
+      color: var(--gold-2);
+    }
+
+    .gallery-grid-dynamic {
+      columns: 3 300px;
+      column-gap: 24px;
+    }
+
+    .gallery-grid-dynamic .gallery-item {
+      width: 100%;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      cursor: pointer;
+      break-inside: avoid;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), filter 0.3s ease;
+      background: #171915;
+      display: block;
+    }
+
+    .gallery-grid-dynamic .gallery-item:hover {
+      transform: scale(1.03);
+      filter: brightness(1.05);
+    }
+
+    @media (max-width: 768px) {
+      .home-our-gallery {
+        padding: 60px 0;
+      }
+
+      .gallery-grid-dynamic {
+        columns: 2 200px;
+        column-gap: 16px;
+      }
+
+      .gallery-grid-dynamic .gallery-item {
+        margin-bottom: 16px;
+        border-radius: 8px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-grid-dynamic {
+        columns: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" id="siteHeader">
+    <a class="brand" href="index.html" aria-label="RB Photo Studio Home">
+      <img class="brand-logo" src="assets/images/logo.png" alt="RB Photo Studio logo" />
+    </a>
+    <button class="menu-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="wedding.html">Wedding</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html" class="nav-cta">Book a Session</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero home-hero">
+      <div class="hero-slideshow" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+      <div class="container hero-content reveal">
+        <p class="eyebrow hero-kicker">Premium wedding photography</p>
+        <h1>
+          Capturing <span>Childhood,</span><br />
+          <span>Wedding</span> & Timeless<br />
+          <span>Moments</span>
+        </h1>
+        <div class="hero-note">
+          <span class="hero-line"></span>
+          <p>We capture soulful celebrations.</p>
+        </div>
+      </div>
+      <div class="hero-controls" aria-label="Home slideshow controls">
+        <button type="button" class="hero-control" data-hero-action="prev" aria-label="Show previous home image"><i
+            class="ri-arrow-left-line"></i></button>
+        <button type="button" class="hero-control is-primary" data-hero-action="toggle" data-state="pause"
+          aria-pressed="false" aria-label="Pause home slideshow">
+          <span class="hero-control-icon hero-control-icon--play" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+              <path d="M8 5.5v13l11-6.5-11-6.5z"></path>
+            </svg>
+          </span>
+          <span class="hero-control-icon hero-control-icon--pause" aria-hidden="true">
+            <svg viewBox="0 0 24 24" role="presentation" focusable="false">
+              <path d="M7 5h3v14H7V5zm7 0h3v14h-3V5z"></path>
+            </svg>
+          </span>
+        </button>
+        <button type="button" class="hero-control" data-hero-action="next" aria-label="Show next home image"><i
+            class="ri-arrow-right-line"></i></button>
+      </div>
+    </section>
+
+    <section class="section home-our-gallery">
+      <div class="container">
+        <div class="section-heading reveal">
+          <h2 class="gallery-title">Our <span>Gallery</span></h2>
+          <p class="gallery-subtitle">RB Photo Studio - Stories that last <span>forever</span></p>
+        </div>
+
+        <div class="gallery-grid-dynamic reveal" id="homeGalleryGrid">
+          <!-- Dynamically loaded images from ourGallary folder will flow here -->
+        </div>
+
+        <div class="center reveal" style="margin-top: 50px;">
+          <a class="btn btn-primary" href="gallery.html">View Full Gallery</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section intro-section">
+      <div class="container split-grid">
+        <div class="reveal">
+          <p class="eyebrow">About the studio</p>
+          <h2>Designed for people who want photographs that feel personal, polished and unforgettable.</h2>
+        </div>
+        <div class="intro-copy reveal">
+          <p>Led by photographer Rushi Bhutekar, RB PhotoStudio blends documentary emotion with editorial composition.
+            Every shoot is planned with clear mood boards, comfortable guidance and elegant post-production.</p>
+          <a href="about.html" class="text-link">Discover our story →</a>
+        </div>
+      </div>
+    </section>
+    <footer></footer>
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Services</p>
+          <h2>Photography for every milestone</h2>
+          <p>From intimate portraits to multi-day events, each service is crafted with a premium studio workflow.</p>
+        </div>
+        <div class="card-grid service-preview-grid">
+          <article class="feature-card reveal"><span>01</span>
+            <h3>Wedding Photography</h3>
+            <p>Candid rituals, cinematic portraits and refined album-ready storytelling.</p>
+          </article>
+          <article class="feature-card reveal"><span>02</span>
+            <h3>Baby & Family Shoots</h3>
+            <p>Gentle, patient sessions with safe posing and warm natural expressions.</p>
+          </article>
+          <article class="feature-card reveal"><span>03</span>
+            <h3>Product & Brand</h3>
+            <p>Clean commercial images for e-commerce, campaigns and social media.</p>
+          </article>
+        </div>
+        <div class="center reveal"><a class="btn btn-outline" href="services.html">Explore Services</a></div>
+      </div>
+    </section>
+
+    <section class="section gallery-preview">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">Featured work</p>
+          <h2>Frames with depth, detail and emotion</h2>
+        </div>
+        <div class="masonry-preview">
+          <img src="assets/images/ourGallary/gallery-img-1.jpg" alt="Featured gallery image 1" />
+          <img src="assets/images/ourGallary/gallery-img-2.jpg" alt="Featured gallery image 2" />
+          <img src="assets/images/ourGallary/gallery-img-3.jpg" alt="Featured gallery image 3" />
+          <img src="assets/images/ourGallary/gallery-img-4.jpg" alt="Featured gallery image 4" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section numbers-section">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Our Numbers</p>
+          <h2>These milestones define our journey</h2>
+          <p>The results we have built over years of weddings, portraits and family shoots.</p>
+        </div>
+        <div class="stats-grid numbers-grid">
+          <article class="stat-card reveal">
+            <strong>7000+</strong>
+            <span>Weddings Captured</span>
+          </article>
+          <article class="stat-card reveal">
+            <strong>4000+</strong>
+            <span>Kids Photoshoots</span>
+          </article>
+          <article class="stat-card reveal">
+            <strong>80+</strong>
+            <span>Years Experience</span>
+          </article>
+          <article class="stat-card reveal">
+            <strong>100%</strong>
+            <span>Client Satisfaction</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why-section section-alt">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Why choose us</p>
+          <h2>A premium experience from planning to final delivery</h2>
+        </div>
+        <div class="icon-grid">
+          <div class="icon-card reveal"><strong>Creative Direction</strong>
+            <p>Styled concepts, pose guidance and mood-based planning before every shoot.</p>
+          </div>
+          <div class="icon-card reveal"><strong>Fast Delivery</strong>
+            <p>Preview images within 72 hours and carefully retouched final albums.</p>
+          </div>
+          <div class="icon-card reveal"><strong>Comfort First</strong>
+            <p>Friendly team, relaxed workflow and thoughtful handling for kids and families.</p>
+          </div>
+          <div class="icon-card reveal"><strong>Hosting Ready</strong>
+            <p>Clean static pages made to run smoothly on any normal web hosting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section testimonials">
+      <div class="container">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Client stories</p>
+          <h2>Trusted by families, founders and couples</h2>
+        </div>
+        <div class="testimonial-grid">
+          <blockquote class="testimonial-card reveal">
+            <p>“The team made our wedding day feel effortless. The photos are emotional, sharp and beautifully edited.”
+            </p><cite>— Riya & Karan, Wedding Shoot</cite>
+          </blockquote>
+          <blockquote class="testimonial-card reveal">
+            <p>“Our baby photoshoot was calm and safe. The final album is something our family will always treasure.”
+            </p><cite>— Neha Patil, Baby Shoot</cite>
+          </blockquote>
+          <blockquote class="testimonial-card reveal">
+            <p>“RB Photo Studio gave our products a premium look. The images instantly improved our website presentation.”</p>
+            <cite>— Dev Shah, Brand Founder</cite>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container reveal">
+        <p class="eyebrow">Your story deserves attention</p>
+        <h2>Ready to preserve your next milestone?</h2>
+        <p>Book a free consultation and receive a custom shoot plan.</p>
+        <a class="btn btn-primary" href="contact.html">Start Enquiry</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>RB Photo Studio</h3>
+        <p>Premium photography studio in MUDANA, Maharashtra.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Mudana, Mahagoan, Maharashtra</p>
+        <p>+91 7709373065</p>
+        <p>rushibhutekar@gmail.com</p>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <p>Instagram · Facebook · YouTube</p>
+        <p>Mon–Sun: 10 AM – 8 PM</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 RB Photo Studio. All rights reserved.</div>
+  </footer>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" aria-label="Close preview">×</button>
+    <img src="" alt="Expanded gallery preview" id="lightboxImage" />
+  </div>
+
+  <script type="module" src="js/script.js"></script>
+</body>
+
+</html>
