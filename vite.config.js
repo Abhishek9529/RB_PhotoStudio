@@ -8,6 +8,7 @@ export default defineConfig({
         main: 'index.html',
         about: 'about.html',
         services: 'services.html',
+        wedding: 'wedding.html',
         gallery: 'gallery.html',
         contact: 'contact.html'
       }

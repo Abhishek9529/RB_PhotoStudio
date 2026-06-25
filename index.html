@@ -8,7 +8,7 @@
   <meta name="description"
     content="RB Photo Studio is a premium photography studio in Mudana, Maharashtra for weddings, portraits, baby shoots, products and events." />
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet" />
-  <link rel="preconnect" href="https://images.unsplash.com" />
+
   <link rel="stylesheet" href="css/style.css" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
@@ -207,11 +207,25 @@
     }
 
     @media (max-width: 760px) {
-      .hero-content {
-        max-width: 92%;
+      .home-hero {
+        min-height: 100vh;
+        width: 100vw;
+        max-width: 100%;
+      }
+
+      .hero-slideshow {
+        width: 100%;
+      }
+
+      .hero-overlay {
+        background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 30%, rgba(0,0,0,0.55) 100%);
+      }
+
+      .container.hero-content {
+        max-width: 100%;
+        width: 100%;
         margin-left: 0;
-        padding-top: 88px;
-        padding-bottom: 80px;
+        padding: 88px 5% 80px;
       }
 
       .home-hero h1 {
@@ -276,9 +290,12 @@
     }
 
     @media (max-width: 480px) {
-      .hero-content {
-        padding-top: 78px;
-        padding-bottom: 70px;
+      .home-hero {
+        min-height: 100vh;
+      }
+
+      .container.hero-content {
+        padding: 78px 5% 70px;
       }
 
       .home-hero h1 {
@@ -376,7 +393,7 @@
       margin: 0;
     }
 
-    Designed .home-our-gallery .gallery-subtitle span {
+    .home-our-gallery .gallery-subtitle span {
       color: var(--gold-2);
     }
 
@@ -524,7 +541,7 @@
         </div>
       </div>
     </section>
-    <footer></footer>
+
     <section class="section section-alt">
       <div class="container">
         <div class="section-heading reveal">

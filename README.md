@@ -4,9 +4,10 @@ A photography studio website built with HTML, CSS and vanilla JavaScript, now se
 
 ## Pages Included
 
-- Home page
+- Home page with hero slideshow and gallery preview
 - About page
-- Services page
+- Services page with pricing and workflow
+- Wedding page
 - Gallery page with category filters and lightbox
 - Contact page with frontend validation and success message
 

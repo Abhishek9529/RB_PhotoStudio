@@ -128,7 +128,6 @@ if (homeHero && heroSlideshow) {
 
 // Dynamic loading for "Our Gallery" section on Home Page
 const homeGalleryGrid = document.getElementById('homeGalleryGrid');
-console.log('homeGalleryGrid element:', homeGalleryGrid);
 if (homeGalleryGrid) {
   const galleryImages = resolveImageUrls([
     '../assets/images/ourGallary/gallery-img-1.jpg',
@@ -165,8 +164,6 @@ if (homeGalleryGrid) {
     alt: `Gallery image ${index + 1}`
   }));
 
-  console.log('galleryImages count:', galleryImages.length);
-
   if (galleryImages.length > 0) {
     homeGalleryGrid.innerHTML = '';
     galleryImages.forEach(({ src, alt }) => {
@@ -178,7 +175,6 @@ if (homeGalleryGrid) {
       homeGalleryGrid.appendChild(img);
     });
     homeGalleryGrid.classList.add('visible');
-    console.log('Gallery images appended:', homeGalleryGrid.children.length);
   }
 }
 
