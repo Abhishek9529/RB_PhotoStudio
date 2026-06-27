@@ -3,9 +3,9 @@ const header = document.getElementById('siteHeader');
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('.nav-menu');
 
-function resolveImageUrls(relativePaths) {
-  return relativePaths.map(path => new URL(path, import.meta.url).href);
-}
+// Use import.meta.glob so Vite discovers and bundles every image at build time
+const homePageImages = import.meta.glob('../assets/images/home-page-images/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
+const ourGalleryImages = import.meta.glob('../assets/images/ourGallary/*.{jpg,jpeg,png,webp}', { eager: true, import: 'default' });
 
 function handleHeaderScroll() {
   if (!header) return;
@@ -33,16 +33,19 @@ const heroNextButton = document.querySelector('[data-hero-action="next"]');
 const heroToggleButton = document.querySelector('[data-hero-action="toggle"]');
 
 if (homeHero && heroSlideshow) {
-  const homeSlides = resolveImageUrls([
+  const homeSlideFiles = [
     '../assets/images/home-page-images/home-page.jpg',
     '../assets/images/home-page-images/home-img2.png',
     '../assets/images/home-page-images/home-img4.png',
     '../assets/images/home-page-images/home-img5.jpeg',
     '../assets/images/home-page-images/home-img6.jpeg'
-  ]).map((src, index) => ({
-    name: `home-slide-${index + 1}`,
-    src
-  }));
+  ];
+  const homeSlides = homeSlideFiles
+    .filter(path => homePageImages[path])
+    .map((path, index) => ({
+      name: `home-slide-${index + 1}`,
+      src: homePageImages[path]
+    }));
 
   if (homeSlides.length > 0) {
     heroSlideshow.innerHTML = '';
@@ -129,37 +132,14 @@ if (homeHero && heroSlideshow) {
 // Dynamic loading for "Our Gallery" section on Home Page
 const homeGalleryGrid = document.getElementById('homeGalleryGrid');
 if (homeGalleryGrid) {
-  const galleryImages = resolveImageUrls([
-    '../assets/images/ourGallary/gallery-img-1.jpg',
-    '../assets/images/ourGallary/gallery-img-2.jpg',
-    '../assets/images/ourGallary/gallery-img-3.jpg',
-    '../assets/images/ourGallary/gallery-img-4.jpg',
-    '../assets/images/ourGallary/gallery-img-5.jpg',
-    '../assets/images/ourGallary/gallery-img-6.jpg',
-    '../assets/images/ourGallary/gallery-img-7.jpg',
-    '../assets/images/ourGallary/gallery-img-8.jpg',
-    '../assets/images/ourGallary/gallery-img-9.jpg',
-    '../assets/images/ourGallary/gallery-img-10.jpg',
-    '../assets/images/ourGallary/gallery-img-11.jpg',
-    '../assets/images/ourGallary/gallery-img-12.jpg',
-    '../assets/images/ourGallary/gallery-img-13.jpg',
-    '../assets/images/ourGallary/gallery-img-14.jpg',
-    '../assets/images/ourGallary/gallery-img-15.jpg',
-    '../assets/images/ourGallary/gallery-img-16.jpg',
-    '../assets/images/ourGallary/gallery-img-17.jpg',
-    '../assets/images/ourGallary/gallery-img-18.jpg',
-    '../assets/images/ourGallary/gallery-img-19.jpg',
-    '../assets/images/ourGallary/gallery-img-20.jpg',
-    '../assets/images/ourGallary/gallery-img-21.jpg',
-    '../assets/images/ourGallary/gallery-img-22.jpg',
-    '../assets/images/ourGallary/gallery-img-23.jpg',
-    '../assets/images/ourGallary/gallery-img-24.jpg',
-    '../assets/images/ourGallary/gallery-img-25.jpg',
-    '../assets/images/ourGallary/gallery-img-26.jpg',
-    '../assets/images/ourGallary/gallery-img-27.jpg',
-    '../assets/images/ourGallary/gallery-img-28.jpg',
-    '../assets/images/ourGallary/gallery-img-29.jpg'
-  ]).map((src, index) => ({
+  // Sort by numeric index so images appear in order (1, 2, 3, ... 29)
+  const sortedEntries = Object.entries(ourGalleryImages).sort((a, b) => {
+    const numA = parseInt(a[0].match(/gallery-img-(\d+)/)?.[1] || '0');
+    const numB = parseInt(b[0].match(/gallery-img-(\d+)/)?.[1] || '0');
+    return numA - numB;
+  });
+
+  const galleryImages = sortedEntries.map(([path, src], index) => ({
     src,
     alt: `Gallery image ${index + 1}`
   }));
